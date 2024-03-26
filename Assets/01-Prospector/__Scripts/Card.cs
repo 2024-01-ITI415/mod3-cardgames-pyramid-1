@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class Card : MonoBehaviour {
 
 
@@ -17,15 +18,23 @@ public class Card : MonoBehaviour {
 	public CardDefinition def;  // from DeckXML.xml		
 
 
-	public bool faceUp {
-		get {
+	public bool faceUp
+	{
+		get
+		{
 			return (!back.activeSelf);
 		}
 
-		set {
+		set
+		{
 			back.SetActive(!value);
 		}
 	}
+
+    virtual public void OnMouseUpAsButton()
+    {
+        print(name); // When clicked, this outputs the card name
+}
 
 
 	// Use this for initialization

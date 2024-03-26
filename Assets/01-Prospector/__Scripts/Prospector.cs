@@ -11,18 +11,35 @@ public class Prospector : MonoBehaviour {
 
 	[Header("Set in Inspector")]
 	public TextAsset			deckXML;
+    public TextAsset            layoutXML;
 
-
-	[Header("Set Dynamically")]
+    [Header("Set Dynamically")]
 	public Deck					deck;
-
-	void Awake(){
+    public Layout				layout;
+    public List<CardProspector> drawPile;
+    void Awake(){
 		S = this;
 	}
 
 	void Start() {
 		deck = GetComponent<Deck> ();
 		deck.InitDeck (deckXML.text);
-	}
+        Deck.Shuffle(ref deck.cards); // This shuffles the deck by reference // a
 
+   
+    layout = GetComponent<Layout>();  // Get the Layout component
+        layout.ReadLayout(layoutXML.text);
+        drawPile = ConvertListCardsToListCardProspectors(deck.cards);
+    }
+    List<CardProspector> ConvertListCardsToListCardProspectors(List<Card> lCD)
+    {
+        List<CardProspector> lCP = new List<CardProspector>();
+        CardProspector tCP;
+        foreach (Card tCD in lCD)
+        {
+            tCP = tCD as CardProspector;                   // a
+            lCP.Add(tCP);
+        }
+        return (lCP);
+    }
 }
