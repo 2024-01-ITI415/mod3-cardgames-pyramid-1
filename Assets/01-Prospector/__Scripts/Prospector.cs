@@ -43,6 +43,7 @@ public class Prospector : MonoBehaviour
         drawPile = ConvertListCardsToListCardProspectors(deck.cards);
         LayoutGame();
     }
+
     CardProspector Draw()
     {
         CardProspector cd = drawPile[0]; // Pull the 0th CardProspector
@@ -90,29 +91,32 @@ public class Prospector : MonoBehaviour
                     cp = FindCardByLayoutID(hid);
                     tCP.hiddenBy.Add(cp);
                 }
+               
             }
             // Set up the initial target card
             MoveToTarget(Draw());
-
             // Set up the Draw pile
             UpdateDrawPile();
-            CardProspector FindCardByLayoutID(int layoutID)
-            {
-                foreach (CardProspector tCP in tableau)
-                {
-                    // Search through all cards in the tableau List<>
-                    if (tCP.layoutID == layoutID)
-                    {
-                        // If the card has the same ID, return it
-                        return (tCP);
-                    }
-                }
-                // If it's not found, return null
-                return (null);
+         
             }
+        CardProspector FindCardByLayoutID(int layoutID)
+        {
+            foreach (CardProspector tCP in tableau)
+            {
+                // Search through all cards in the tableau List<>
+                if (tCP.layoutID == layoutID)
+                {
+                    // If the card has the same ID, return it
+                    return (tCP);
+                }
+            }
+            // If it's not found, return null
+            return (null);
         }
-
+        
     }
+
+
     void SetTableauFaces()
     {
         foreach (CardProspector cd in tableau)
@@ -164,6 +168,7 @@ public class Prospector : MonoBehaviour
         cd.SetSortingLayerName(layout.discardPile.layerName);
         cd.SetSortOrder(0);
     }
+    // Arranges all the cards of the drawPile to show how many are left
     void UpdateDrawPile()
     {
         CardProspector cd;
@@ -201,6 +206,7 @@ public class Prospector : MonoBehaviour
                 MoveToDiscard(target); // Moves the target to the discardPile
                 MoveToTarget(Draw());  // Moves the next drawn card to the target
                 UpdateDrawPile();     // Restacks the drawPile
+                ScoreManager.EVENT(eScoreEvent.draw);
                 break;
 
             case eCardState.tableau:
@@ -222,6 +228,7 @@ public class Prospector : MonoBehaviour
                 tableau.Remove(cd); // Remove it from the tableau List
                 MoveToTarget(cd);
                 SetTableauFaces(); // Update tableau card face-ups
+                ScoreManager.EVENT(eScoreEvent.mine);
                 break;
                 
         }
@@ -262,10 +269,12 @@ public class Prospector : MonoBehaviour
         if (won)
         {
             print("Game Over. You won! :)");
+            ScoreManager.EVENT(eScoreEvent.gameWin);
         }
         else
         {
             print("Game Over. You Lost. :(");
+            ScoreManager.EVENT(eScoreEvent.gameLoss);
         }
         // Reload the scene, resetting the game
         SceneManager.LoadScene("__Prospector_Scene_0");
