@@ -477,8 +477,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 100
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -593,7 +593,7 @@ MonoBehaviour:
   reloadDelay: 2
   gameOverText: {fileID: 0}
   roundResultText: {fileID: 0}
-  highScoreText: {fileID: 0}
+  highScoreText: {fileID: 304422620}
   deck: {fileID: 0}
   layout: {fileID: 0}
   drawPile: []
@@ -643,6 +643,9 @@ MonoBehaviour:
   - Row1
   - Row2
   - Row3
+  - Row4
+  - Row5
+  - Row6
   - Discard
   - Draw
 --- !u!114 &827460517
@@ -761,7 +764,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 43.1, y: 23.89, z: 1}
+  m_LocalScale: {x: 40, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -949,7 +952,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.85, y: 1}
   m_AnchorMax: {x: 0.85, y: 1}
-  m_AnchoredPosition: {x: -33, y: -252.27}
+  m_AnchoredPosition: {x: 13.390015, y: -1.9199219}
   m_SizeDelta: {x: 200, y: 32}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1928466393

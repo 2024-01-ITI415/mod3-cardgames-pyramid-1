@@ -8,7 +8,8 @@ public enum eCardState
     drawpile,
     tableau,
     target,
-    discard
+    discard,
+    wastePile
 }
 public class CardProspector : Card
 { // Make sure CardProspector extends Card
