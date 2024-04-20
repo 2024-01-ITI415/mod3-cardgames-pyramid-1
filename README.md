@@ -1,6 +1,5 @@
 # Prospector
 Gibson's Prospector Solitaire
-
 This contains a blend of code from the 1st and 2nd edition of the book. 
 
 The processes of making the cards was broken out in to separate functions - AddDecorators, AddPips, AddFace, etc. In the 1st edition the code contained all of these processes within the MakeCard function.
